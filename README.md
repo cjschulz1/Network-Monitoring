@@ -95,12 +95,33 @@ Router 1 loopback creation:
 
 ![image](https://user-images.githubusercontent.com/95718746/145131032-59adda1e-8fed-4df3-9406-4cfdd3a4a2e9.png)
 
+Configuraiton files used:
+
+- [config_templ_ietf_interface.xml](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/config_templ_ietf_interface.xml)
+- [netconf_loopback1.py](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/netconf_loopback1.py)
+- [routersnetconf.py](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/routersnetconf.py)
+
+## Ansible Skill
+### Show ip interface brief on routers 1,2, & 3 with ansible playbook and save to file.
+
+```
+def ansible_showipinterfacebrief(incoming_msg):
+    """Show ip interface brief on routers 1,2,3
+    """
+    response = Response()
+    import os
+    stream = os.popen('ansible-playbook -i ./inventory show_ip_int_br_playbook.yaml')
+    output = stream.read()
+    output
+
+    response.markdown = "Wrote show ip interface brief to .txt files"
+    response.markdown = output
+    return response
+```
+
 Files used:
-
-- netconf_loopback1.py
-- config_templ_ietf_interface.xml
-- routersnetconf.py
-
-
+- [ansible.cfg](https://github.com/cjschulz1/Network-Monitoring/blob/d77f98efa4075aea0fd02ef10935268fa396d9c2/ansible.cfg)
+- [inventory.txt](https://github.com/cjschulz1/Network-Monitoring/blob/78dc2d52bcbac222bceda248cdadf2c39385f133/inventory)
+- [show_ip_int_br_playbook.yaml](https://github.com/cjschulz1/Network-Monitoring/blob/9d28dd9bc17e69f059d02d18ef82a4822f5009ae/show_ip_int_br_playbook.yaml)
 
 
