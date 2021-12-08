@@ -180,9 +180,57 @@ def html_open(incoming_msg):
     return response
 ```
 Bot input:
+
 ![image](https://user-images.githubusercontent.com/95718746/145132826-3fd1afd9-cfdd-4bf6-81f3-2e4f7d2d9b9f.png)
 
 Output:
 
 ![image](https://user-images.githubusercontent.com/95718746/145132840-84392911-58cd-4794-913c-99e7960e170d.png)
+
+
+## Genie Robot Skill - Compare & Open Genie Robot Log.html
+### Chatbot skill to run the compare script and then open the compare log.htm with Shutdown G2 interface
+
+```
+def genie_robot_compare(incoming_msg):
+    """Compare Genie Robot Script
+    """
+    response = Response()
+    import os
+    stream = os.popen('robot --outputdir robot_compare robot_compare_snapshot.robot')
+    output = stream.read()
+    output
+
+    import webbrowser
+    webbrowser.open_new_tab('file:///home/devasc/labs/devnet-src/sample-app/network_monitor/webex/robot_compare/log.html')
+
+    response.markdown = "Opened log.html Genie Robot Compare Script"
+    response.markdown = output
+    return response
+```
+
+File Used:
+- [robot_compare_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/0a0cdc277cc5c05848654718eec7e288cc3a45d9/robot_compare_snapshot.robot)
+
+
+Robot Input:
+
+![image](https://user-images.githubusercontent.com/95718746/145133283-55fad78c-454e-4671-82b3-4f1c9263af40.png)
+
+![image](https://user-images.githubusercontent.com/95718746/145133302-9415fe31-f775-4e4c-ab39-87b9afe975db.png)
+
+Log File:
+
+![image](https://user-images.githubusercontent.com/95718746/145133325-a150dae3-3c17-44a8-b0b0-7ee43f8dc9e2.png)
+
+
+
+
+
+
+
+
+
+
+
 
