@@ -32,7 +32,7 @@ def netmiko_copyrunstart(incoming_msg):
 
 ```
 Files Used:
-- [netmikocopyrun.py](https://github.com/cjschulz1/Network-Monitoring/blob/ab8f58055d19bb2fe4fca03e7dcd4776b4df1ffb/file/netmikocopyrun.py)
+- [netmikocopyrun.py](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/netmikocopyrun.py)
 
 Chatbox commands:
 
@@ -73,9 +73,9 @@ Router 1 loopback creation:
 
 Configuraiton files used:
 
-- [config_templ_ietf_interface.xml](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/file/config_templ_ietf_interface.xml)
-- [netconf_loopback1.py](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/file/netconf_loopback1.py)
-- [routersnetconf.py](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/file/routersnetconf.py)
+- [config_templ_ietf_interface.xml](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/config_templ_ietf_interface.xml)
+- [netconf_loopback1.py](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/netconf_loopback1.py)
+- [routersnetconf.py](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/routersnetconf.py)
 
 ## Ansible Skill
 ### Show ip interface brief on routers 1,2, & 3 with ansible playbook and save to file.
@@ -98,9 +98,9 @@ def ansible_showipinterfacebrief(incoming_msg):
 
 
 Files used:
-- [ansible.cfg](https://github.com/cjschulz1/Network-Monitoring/blob/d77f98efa4075aea0fd02ef10935268fa396d9c2/file/ansible.cfg)
-- [inventory.txt](https://github.com/cjschulz1/Network-Monitoring/blob/78dc2d52bcbac222bceda248cdadf2c39385f133/file/inventory)
-- [show_ip_int_br_playbook.yaml](https://github.com/cjschulz1/Network-Monitoring/blob/9d28dd9bc17e69f059d02d18ef82a4822f5009ae/file/show_ip_int_br_playbook.yaml)
+- [ansible.cfg](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/ansible.cfg)
+- [inventory.txt](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/inventory)
+- [show_ip_int_br_playbook.yaml](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/show_ip_int_br_playbook.yaml)
 
 Outputs:
 
@@ -135,7 +135,7 @@ def genie_robot(incoming_msg):
 
 
 Files used:
-- [robot_inital_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/360c9d75e501bcc0dd966753e4d394a3179c14c3/file/robot_initial_snapshot.robot)
+- [robot_inital_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/robot_initial_snapshot.robot)
 
 
 ## Genie Robot Skill - Open Genie Robot Log.html
@@ -182,7 +182,7 @@ def genie_robot_compare(incoming_msg):
 ```
 
 File Used:
-- [robot_compare_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/0a0cdc277cc5c05848654718eec7e288cc3a45d9/file/robot_compare_snapshot.robot)
+- [robot_compare_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/robot_compare_snapshot.robot)
 
 
 Robot Input:
@@ -281,7 +281,7 @@ def genie_disaster_saveip(incoming_msg):
 
 Files used:
 
-- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/5e976462824386dd72f49793a4039f8f802d0569/file/netconf_saveiptest.py)
+- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/netconf_saveiptest.py)
 
 Input:
 
@@ -317,8 +317,8 @@ def genie_disaster_saveip(incoming_msg):
 ```
 
 Files Used:
-- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/5e976462824386dd72f49793a4039f8f802d0569/file/netconf_saveiptest.py)
-- [config_templ_ietf_interfacetest.xml](https://github.com/cjschulz1/Network-Monitoring/blob/086d08ce2c90fdcf5429e3a2caea917978ae05e4/file/config_templ_ietf_interfacetest.xml)
+- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/netconf_saveiptest.py)
+- [config_templ_ietf_interfacetest.xml](https://github.com/cjschulz1/Network-Monitoring/blob/dffabf0aeee61863746437fd7b0af76e5ba4a591/file/config_templ_ietf_interfacetest.xml)
 
 
 Output:
