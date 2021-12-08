@@ -1,4 +1,4 @@
-# **Network-Monitoring**
+# **Network Monitoring ChatBox Project by Colin & Connor Schulz**
 
 Configure the network topology as follows:
 
