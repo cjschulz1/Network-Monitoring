@@ -106,8 +106,7 @@ Configuraiton files used:
 
 ```
 def ansible_showipinterfacebrief(incoming_msg):
-    """Show ip interface brief on routers 1,2,3
-    """
+    """Show ip interface brief on routers 1,2,3"""
     response = Response()
     import os
     stream = os.popen('ansible-playbook -i ./inventory show_ip_int_br_playbook.yaml')
@@ -143,8 +142,7 @@ Outputs:
 
 ```
 def genie_robot(incoming_msg):
-    """Start Genie Robot Script
-    """
+    """Start Genie Robot Script"""
     response = Response()
     import os
     stream = os.popen('robot --outputdir robot_initial robot_initial_snapshot.robot')
@@ -169,8 +167,7 @@ Files used:
 
 ```
 def html_open(incoming_msg):
-    """Open the genie log.html file in browser
-    """
+    """Open the genie log.html file in browser"""
     response = Response()
     
     import webbrowser
@@ -193,8 +190,7 @@ Output:
 
 ```
 def genie_robot_compare(incoming_msg):
-    """Compare Genie Robot Script
-    """
+    """Compare Genie Robot Script"""
     response = Response()
     import os
     stream = os.popen('robot --outputdir robot_compare robot_compare_snapshot.robot')
@@ -222,6 +218,136 @@ Robot Input:
 Log File:
 
 ![image](https://user-images.githubusercontent.com/95718746/145133325-a150dae3-3c17-44a8-b0b0-7ee43f8dc9e2.png)
+
+
+## Genie Monitor for Disaster Skill - Genie Disaster Initial Part 1
+
+### Initialize the genie robot to then later compare for changes
+
+```
+def genie_disaster_initial(incoming_msg):
+    """Set up inital genie snapshot"""
+    response = Response()
+    
+    import os
+    stream = os.popen('robot --outputdir robot_initial robot_initial_snapshot.robot')
+    output = stream.read()
+    output
+
+    import webbrowser
+    webbrowser.open_new_tab('file:///home/devasc/labs/devnet-src/sample-app/network_monitor/webex/robot_initial/log.html')
+
+    response.markdown = "Created snapshot as log.html"
+    return response
+```
+
+Robot Input:
+
+![image](https://user-images.githubusercontent.com/95718746/145133585-b94044bd-2d94-4646-9183-80511eba992c.png)
+
+Log:
+
+![image](https://user-images.githubusercontent.com/95718746/145133608-d669cf9b-de3b-46c1-8f97-6c88abb6409e.png)
+
+
+
+## Genie Monitor for Disaster Skill - Genie Disaster Compare Part 2
+
+### Genie robot compare for interface change and open log.html, GigabitEthernet 2 changed to 172.16.0.3 on CSR2
+
+```
+def genie_disaster_compare(incoming_msg):
+    """Compare Genie Robot Script with initial snapshot to see if ip address changed and update it"""
+    response = Response()
+    import os
+    stream = os.popen('robot --outputdir robot_compare robot_compare_snapshot.robot')
+    output = stream.read()
+    output
+
+    import webbrowser
+    webbrowser.open_new_tab('file:///home/devasc/labs/devnet-src/sample-app/network_monitor/webex/robot_compare/log.html')
+
+    response.markdown = "Opened log.html Genie Robot Compare Script"
+    response.markdown = output
+    return response
+```
+
+Input:
+
+![image](https://user-images.githubusercontent.com/95718746/145133747-a37561bf-d839-4907-909e-c44772ef9351.png)
+
+
+Output:
+
+![image](https://user-images.githubusercontent.com/95718746/145133757-96c4cd3f-63f6-4960-b97f-aaeee7a1a3bc.png)
+
+
+
+## Genie Monitor for Disaster Skill - Netconf save new IP Part 3
+### Netconf script to save new ip address from text file ip.txt entered by user into GigabitEthernet2 automatically.
+
+```
+def genie_disaster_saveip(incoming_msg):
+    """Save new ip to text file
+    """
+    response = Response()
+
+    val = input("Enter your new ip: ")
+
+    with open("ip.txt", "w") as text_file:
+        text_file.write(val)
+
+    import netconf_saveip as saveip
+    import netconf_saveiptest as saveiptest
+    response.markdown = "Updated IP address of GigabitEthernet2"
+    return response
+```
+
+Files used:
+
+- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/5e976462824386dd72f49793a4039f8f802d0569/netconf_saveiptest.py)
+
+Input:
+
+![image](https://user-images.githubusercontent.com/95718746/145134037-3b184633-3ea3-453e-86d5-0dec63c7dedc.png)
+
+Output:
+
+![image](https://user-images.githubusercontent.com/95718746/145134070-f55b6c6a-77a2-49fc-9f60-73bd048eab84.png)
+
+Enter New IP address in python CLI ^
+
+![image](https://user-images.githubusercontent.com/95718746/145134086-ea9cf256-9075-4aed-840d-4f2a43c9f7cf.png)
+
+
+## Genie Monitor for Disaster Skill - Genie Disaster Netconf update VPN IP Part 4
+### Netconf script update the new ip in VPN connection on HQ/CSR1 as well
+
+```
+def genie_disaster_saveip(incoming_msg):
+    """Save new ip to text file
+    """
+    response = Response()
+
+    val = input("Enter your new ip: ")
+
+    with open("ip.txt", "w") as text_file:
+        text_file.write(val)
+
+    import netconf_saveip as saveip
+    import netconf_saveiptest as saveiptest
+    response.markdown = "Updated IP address of GigabitEthernet2 and CSR1 VPN"
+    return response
+```
+
+Files Used:
+- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/5e976462824386dd72f49793a4039f8f802d0569/netconf_saveiptest.py)
+- [config_templ_ietf_interfacetest.xml](https://github.com/cjschulz1/Network-Monitoring/blob/086d08ce2c90fdcf5429e3a2caea917978ae05e4/config_templ_ietf_interfacetest.xml)
+
+
+
+
+
 
 
 
