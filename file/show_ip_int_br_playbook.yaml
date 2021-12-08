@@ -1,0 +1,17 @@
+--- 
+- name: SHOW IPINTBR
+  hosts: routers
+  gather_facts: false 
+  connection: network_cli
+  
+  tasks: 
+   - name: DISPLAYING IP INTERFACE BRIEF
+     ios_command: 
+       commands: 
+         - show ip interface brief
+     register: config 
+  
+   - name: SAVE OUTPUT TO ./ipint/ 
+     copy: 
+       content: "{{ config.stdout[0] }}" 
+       dest: "ipint/show_ipintbr_{{ inventory_hostname }}.txt"
