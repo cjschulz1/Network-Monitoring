@@ -1,10 +1,13 @@
 # **Network-Monitoring**
 
-Network topologies
+Configure the network topology as follows:
 
 ![Network Topology](/images/381.PNG)
 
 ![Network Topology 2](/images/3812.PNG)
+
+
+
 
 # Chatbot Project
 
@@ -16,36 +19,6 @@ Network topologies
 - 192.168.122.20
 - 192.168.122.30
 
-Netmiko Code:
-```
-from netmiko import ConnectHandler
-import myNewParamiko as m
-import threading
-
-def copyrun_start(router):
-    connection = ConnectHandler(**router)
-    prompt =  connection.find_prompt()
-    if '>' in prompt:
-        connection.enable()
-    output = connection.save_config()
-    print(output)
-
-    print('Closing connection')
-    connection.disconnect()
-    print('#'*40)
-
-routers = m.get_list_from_file('routers.txt')
-threads = list()
-
-for router in routers:
-    th = threading.Thread(target=copyrun_start,args=(router,))
-    threads.append(th)
-   
-for th in threads:
-    th.start()
-for th in threads:
-    th.join()
-```
 Function in 381Bot.py code to run command
 ```
 def netmiko_copyrunstart(incoming_msg):
@@ -58,6 +31,9 @@ def netmiko_copyrunstart(incoming_msg):
     return response
 
 ```
+Files Used:
+- [netmikocopyrun.py](https://github.com/cjschulz1/Network-Monitoring/blob/ab8f58055d19bb2fe4fca03e7dcd4776b4df1ffb/file/netmikocopyrun.py)
+
 Chatbox commands:
 
 ![text](/images/copyrunstart.png)
@@ -97,9 +73,9 @@ Router 1 loopback creation:
 
 Configuraiton files used:
 
-- [config_templ_ietf_interface.xml](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/config_templ_ietf_interface.xml)
-- [netconf_loopback1.py](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/netconf_loopback1.py)
-- [routersnetconf.py](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/routersnetconf.py)
+- [config_templ_ietf_interface.xml](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/file/config_templ_ietf_interface.xml)
+- [netconf_loopback1.py](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/file/netconf_loopback1.py)
+- [routersnetconf.py](https://github.com/cjschulz1/Network-Monitoring/blob/9336d3df75f46b7cec303703eaa9dadb6564a465/file/routersnetconf.py)
 
 ## Ansible Skill
 ### Show ip interface brief on routers 1,2, & 3 with ansible playbook and save to file.
@@ -122,9 +98,9 @@ def ansible_showipinterfacebrief(incoming_msg):
 
 
 Files used:
-- [ansible.cfg](https://github.com/cjschulz1/Network-Monitoring/blob/d77f98efa4075aea0fd02ef10935268fa396d9c2/ansible.cfg)
-- [inventory.txt](https://github.com/cjschulz1/Network-Monitoring/blob/78dc2d52bcbac222bceda248cdadf2c39385f133/inventory)
-- [show_ip_int_br_playbook.yaml](https://github.com/cjschulz1/Network-Monitoring/blob/9d28dd9bc17e69f059d02d18ef82a4822f5009ae/show_ip_int_br_playbook.yaml)
+- [ansible.cfg](https://github.com/cjschulz1/Network-Monitoring/blob/d77f98efa4075aea0fd02ef10935268fa396d9c2/file/ansible.cfg)
+- [inventory.txt](https://github.com/cjschulz1/Network-Monitoring/blob/78dc2d52bcbac222bceda248cdadf2c39385f133/file/inventory)
+- [show_ip_int_br_playbook.yaml](https://github.com/cjschulz1/Network-Monitoring/blob/9d28dd9bc17e69f059d02d18ef82a4822f5009ae/file/show_ip_int_br_playbook.yaml)
 
 Outputs:
 
@@ -159,7 +135,7 @@ def genie_robot(incoming_msg):
 
 
 Files used:
-- [robot_inital_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/360c9d75e501bcc0dd966753e4d394a3179c14c3/robot_initial_snapshot.robot)
+- [robot_inital_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/360c9d75e501bcc0dd966753e4d394a3179c14c3/file/robot_initial_snapshot.robot)
 
 
 ## Genie Robot Skill - Open Genie Robot Log.html
@@ -206,7 +182,7 @@ def genie_robot_compare(incoming_msg):
 ```
 
 File Used:
-- [robot_compare_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/0a0cdc277cc5c05848654718eec7e288cc3a45d9/robot_compare_snapshot.robot)
+- [robot_compare_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/0a0cdc277cc5c05848654718eec7e288cc3a45d9/file/robot_compare_snapshot.robot)
 
 
 Robot Input:
@@ -305,7 +281,7 @@ def genie_disaster_saveip(incoming_msg):
 
 Files used:
 
-- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/5e976462824386dd72f49793a4039f8f802d0569/netconf_saveiptest.py)
+- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/5e976462824386dd72f49793a4039f8f802d0569/file/netconf_saveiptest.py)
 
 Input:
 
@@ -341,8 +317,14 @@ def genie_disaster_saveip(incoming_msg):
 ```
 
 Files Used:
-- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/5e976462824386dd72f49793a4039f8f802d0569/netconf_saveiptest.py)
-- [config_templ_ietf_interfacetest.xml](https://github.com/cjschulz1/Network-Monitoring/blob/086d08ce2c90fdcf5429e3a2caea917978ae05e4/config_templ_ietf_interfacetest.xml)
+- [netconf_saveiptest.py](https://github.com/cjschulz1/Network-Monitoring/blob/5e976462824386dd72f49793a4039f8f802d0569/file/netconf_saveiptest.py)
+- [config_templ_ietf_interfacetest.xml](https://github.com/cjschulz1/Network-Monitoring/blob/086d08ce2c90fdcf5429e3a2caea917978ae05e4/file/config_templ_ietf_interfacetest.xml)
+
+
+Output:
+
+![image](https://user-images.githubusercontent.com/95718746/145134899-44f11ee7-2997-4d0a-966d-e452b024587f.png)
+
 
 
 
