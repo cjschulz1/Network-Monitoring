@@ -119,9 +119,70 @@ def ansible_showipinterfacebrief(incoming_msg):
     return response
 ```
 
+![image](https://user-images.githubusercontent.com/95718746/145132337-4e9c07f7-95bf-4892-8d5b-6d3b3992a530.png)
+
+
 Files used:
 - [ansible.cfg](https://github.com/cjschulz1/Network-Monitoring/blob/d77f98efa4075aea0fd02ef10935268fa396d9c2/ansible.cfg)
 - [inventory.txt](https://github.com/cjschulz1/Network-Monitoring/blob/78dc2d52bcbac222bceda248cdadf2c39385f133/inventory)
 - [show_ip_int_br_playbook.yaml](https://github.com/cjschulz1/Network-Monitoring/blob/9d28dd9bc17e69f059d02d18ef82a4822f5009ae/show_ip_int_br_playbook.yaml)
 
+Outputs:
+
+![image](https://user-images.githubusercontent.com/95718746/145132134-cc81af74-e1bc-4fb5-8475-5c3451ad4c82.png)
+
+![image](https://user-images.githubusercontent.com/95718746/145132152-be9199fd-657f-4343-8afb-4fa5ca4f9272.png)
+
+![image](https://user-images.githubusercontent.com/95718746/145132165-cf6c3986-d696-4472-9e2d-4487fa0d4212.png)
+
+![image](https://user-images.githubusercontent.com/95718746/145132175-7d4d1b3a-2593-4a9c-8416-2f47bb493e2e.png)
+
+## Genie Robot Skill - Initial Genie Robot
+
+### Chatbot skill to start the initial genie robot script and generate the log files and display the output of the initial snapshot whether it passed or failed. 
+
+```
+def genie_robot(incoming_msg):
+    """Start Genie Robot Script
+    """
+    response = Response()
+    import os
+    stream = os.popen('robot --outputdir robot_initial robot_initial_snapshot.robot')
+    output = stream.read()
+    output
+
+    response.markdown = "Started Genie Robot Script"
+    response.markdown = output
+    return response
+```
+
+
+![image](https://user-images.githubusercontent.com/95718746/145132394-917f2f66-de4f-4eb4-ab6b-75587ab41f02.png)
+
+
+Files used:
+- [robot_inital_snapshot.robot](https://github.com/cjschulz1/Network-Monitoring/blob/360c9d75e501bcc0dd966753e4d394a3179c14c3/robot_initial_snapshot.robot)
+
+
+## Genie Robot Skill - Open Genie Robot Log.html
+### Chatbot skill to open the genie robot log.html file in a browser
+
+```
+def html_open(incoming_msg):
+    """Open the genie log.html file in browser
+    """
+    response = Response()
+    
+    import webbrowser
+    webbrowser.open_new_tab('file:///home/devasc/labs/devnet-src/sample-app/network_monitor/webex/robot_initial/log.html')
+
+    response.markdown = "Opened log.html in browser"
+    return response
+```
+Bot input:
+![image](https://user-images.githubusercontent.com/95718746/145132826-3fd1afd9-cfdd-4bf6-81f3-2e4f7d2d9b9f.png)
+
+Output:
+
+![image](https://user-images.githubusercontent.com/95718746/145132840-84392911-58cd-4794-913c-99e7960e170d.png)
 
