@@ -1,0 +1,53 @@
+<config>
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <crypto>
+				<ipsec xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+					<transform-set>
+						<tag>tran1</tag>
+						<esp>esp-3des</esp>
+						<esp-hmac>esp-md5-hmac</esp-hmac>
+						<mode>
+							<tunnel/>
+						</mode>
+					</transform-set>
+				</ipsec>
+				<isakmp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+					<key>
+						<key-address>
+							<key>cisco</key>
+							<addr4-container>
+								<address>{ip_address}</address>
+							</addr4-container>
+						</key-address>
+					</key>
+					<policy>
+						<number>1</number>
+						<authentication>pre-share</authentication>
+						<encryption>
+							<a3des/>
+						</encryption>
+						<group>2</group>
+						<hash>md5</hash>
+					</policy>
+				</isakmp>
+				<map xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+					<map-seq>
+						<map>
+							<name>Crypt</name>
+							<seq>10</seq>
+							<ipsec-isakmp/>
+							<match>
+								<address>VPN-ACL</address>
+							</match>
+							<set>
+								<peer>
+									<address>{ip_address}</address>
+								</peer>
+								<transform-set>tran1</transform-set>
+							</set>
+						</map>
+					</map-seq>
+				</map>
+        </crypto>
+    </native>
+</config>
